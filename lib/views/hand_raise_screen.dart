@@ -19,7 +19,6 @@ class _HandRaiseDetectionScreenState extends State<HandRaiseDetectionScreen> {
   void initState() {
     super.initState();
     
-    // ViewModelを初期化 (iOSの viewDidLoad のようなタイミング)
     _viewModel = HandRaiseViewModel();
     
     // 最初のカメラ（通常は背面カメラ）を使ってストリームを開始
@@ -30,7 +29,7 @@ class _HandRaiseDetectionScreenState extends State<HandRaiseDetectionScreen> {
 
   @override
   void dispose() {
-    // 画面が破棄される際に、ViewModel内のカメラやML Kitのリソースを解放 (iOSの deinit)
+    // 画面が破棄される際に、ViewModel内のカメラやML Kitのリソースを解放 
     _viewModel.dispose();
     super.dispose();
   }
@@ -38,7 +37,6 @@ class _HandRaiseDetectionScreenState extends State<HandRaiseDetectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ListenableBuilder は _viewModel の notifyListeners() を検知して UI を更新します
       body: ListenableBuilder(
         listenable: _viewModel,
         builder: (context, child) {
@@ -49,7 +47,6 @@ class _HandRaiseDetectionScreenState extends State<HandRaiseDetectionScreen> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          // 仕様書5: ユーザーインターフェース (UI)
           return Stack(
             fit: StackFit.expand,
             children: [
